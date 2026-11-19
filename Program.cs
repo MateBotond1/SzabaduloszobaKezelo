@@ -15,3 +15,9 @@ Console.WriteLine($"Összes játékos létszáma: {Adatok.Sum(x => x.JatekosokSz
 Console.WriteLine($"Átlagos kijutási idő: {((Adatok.Sum(x => x.IdotartamPerc)) / Adatok.Count):F0} perc");
 Jatek legjobb = Adatok.MaxBy(x => x.FizetendoOsszeg());
 Console.WriteLine($"Legtöbbet fizető csapat: {legjobb.CsapatNev} ({legjobb.FizetendoOsszeg()} Ft)");
+int Segitsegnelkul = Adatok.Count(x => x.PalyaTipus == "HORROR" && x.HasznaltSegitseg == 0);
+Console.WriteLine($"\nSegítség nélkül teljesített HORROR játékok száma: {Segitsegnelkul} db\n");
+foreach (Jatek kijutott in Adatok)
+{
+    if (kijutott.IdotartamPerc <= 50) { Console.WriteLine($"{kijutott.CsapatNev} ({kijutott.IdotartamPerc} perc)"); }
+}
